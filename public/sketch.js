@@ -16,6 +16,7 @@ let arrX = [];
 let arrY = [];
 let petals;
 let colorArr = ["#a03443", "#340dsa", "#300ee3"];
+
 function setup() {
   createCanvas(0, 0);
   memory = createInput("");
@@ -36,6 +37,32 @@ function setup() {
 
   rectMode(CENTER);
   frameRate(1);
+
+  const firebaseConfig = {
+    apiKey: "AIzaSyAfTyAtO1mGJzukO3AOI-2ik83xGCBNIjQ",
+    authDomain: "garden2-d3bec.firebaseapp.com",
+    databaseURL: "https://garden2-d3bec-default-rtdb.firebaseio.com",
+    projectId: "garden2-d3bec",
+    storageBucket: "garden2-d3bec.appspot.com",
+    messagingSenderId: "818543115760",
+    appId: "1:818543115760:web:1881e6b1eb5efc4086f135",
+    measurementId: "G-L7B1JWZVM1",
+  };
+
+  // Initialize Firebase
+  firebase.initializeApp(firebaseConfig);
+
+  // Get a reference to the database
+  // var database = firebase.database();
+
+  var starCountRef = firebase.database().ref("/runs/seeds");
+  starCountRef.on("value", (snapshot) => {
+    const data = snapshot.val();
+    Object.keys(data).forEach((key) => {
+      arrX.push(data[key].pX);
+      arrY.push(data[key].pY);
+    });
+  });
 }
 
 function draw() {
@@ -62,37 +89,30 @@ function touchEnded() {
     touchCount++;
     console.log(touchCount);
     if (touchCount > 1) {
-      rect(mouseX, mouseY, 15, 50);
-      // createP("done planting");
-      console.log("saved at: " + mouseX + ", " + mouseY + memory.value());
-      // resizeCanvas(0, 0);
+      // console.log("saved at: " + mouseX + ", " + mouseY + memory.value());
       posX = mouseX;
       posY = mouseY;
-      // select("#thanks").show();
     }
 
     if (touchCount == 2) {
-      select("#thanks").show();
-      savedMemory.html(memory.value());
-      savedMemory.position(posX, posY);
+      // savedMemory.html(memory.value());
+      // savedMemory.position(posX, posY);
 
       let usermemory = memory.value();
       let positionX = posX;
       let positionY = posY;
-
       sendData(usermemory, positionX, positionY);
-      // memoryMade = memory.value();
-      // positionX = posX;
-      // positionY = posY;
-      console.log(locations);
+      setInterval(() => {
+        select("#thanks").show();
+      }, 2000);
     }
   }
   //memory typed by user, date created, position.x, position.y, randomPlantName all go to firebase. randomPlant and p.x p.y show on canvas
 }
 
 function cuteShape(x, y, radius, petalNum, petalWidth) {
-  // fill(233, 33, 100, 30);
-  fill(random(colorArr));
+  fill(233, 33, 100, 30);
+  // fill(random(colorArr));
   noStroke();
   let angle = TWO_PI / petalNum;
   push();
@@ -143,6 +163,9 @@ function saveMem() {
   background("#fef08a");
   formWrite.addClass("hidden");
   select("#plant").show();
+  for (i = 0; i < arrX.length; i++) {
+    cuteShape(arrX[i], arrY[i], arrX[i] / 4, petals, petals);
+  }
 }
 
 function savePlant() {
@@ -169,14 +192,7 @@ async function sendData(mem, px, py) {
       return response.text();
     })
     .then((data) => {
-      // console.log(data);
-      const obj = JSON.parse(data);
-      locations = obj;
-      Object.keys(locations).forEach((key) => {
-        console.log(obj[key].pX, obj[key].pY);
-        arrX.push(obj[key].pX);
-        arrY.push(obj[key].pY);
-      });
+      console.log(data);
     })
     .catch((ex) => {
       console.error(ex);

@@ -566,8 +566,21 @@ canvas {
   margin-bottom: 1rem;
 }
 
+.my-auto{
+  margin-top: auto;
+  margin-bottom: auto;
+}
+
 .mt-4{
   margin-top: 1rem;
+}
+
+.mt-16{
+  margin-top: 4rem;
+}
+
+.mt-36{
+  margin-top: 9rem;
 }
 
 .flex{

@@ -52,24 +52,6 @@ appExpress.post("/api", (request, response, next) => {
   let posX = data.posx;
   let posY = data.posy;
   writeNewPost(memory, posX, posY);
-
-  function getList() {
-    const db = getDatabase();
-    return onValue(
-      ref(db, "/runs/seeds"),
-      (snapshot) => {
-        const list = snapshot.val();
-        console.log(list);
-        response.send(list);
-        // return list;
-        // ...
-      },
-      {
-        onlyOnce: true,
-      }
-    );
-  }
-  getList();
 });
 // Server setup
 appExpress.listen(port, () => {

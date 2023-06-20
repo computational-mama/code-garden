@@ -16,6 +16,8 @@
       rel="stylesheet"
     />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.6.0/p5.min.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-database.js"></script>
 
     <!-- <script src="libraries/p5.sound.min.js"></script> -->
     <!-- {# <script src="https://cdn.tailwindcss.com"></script> #} -->
@@ -35,13 +37,13 @@
       </div>
     </div>
     <div id="write" class="px-6 mx-auto">
-      <p class="text-3xl text-center">
+      <p class="text-2xl text-center">
         think of a memory with a person you love and computer
       </p>
       <div id="submitMemory" class="mx-auto"></div>
     </div>
-    <div id="plant" class="hidden px-5 bg-white/20 mx-7 text-center">
-      <p class="text-3xl">
+    <div id="plant" class="hidden px-5 bg-white/20 mx-7 text-center mt-36">
+      <p class="text-2xl">
         tap on your screen and drag the seed to plant your memory anywhere in
         the garden
       </p>
@@ -52,8 +54,8 @@
         Ok
       </button>
     </div>
-    <div id="thanks" class="hidden px-5 bg-white/20 mx-7 text-center">
-      <p class="text-3xl">thanks for sharing your memory</p>
+    <div id="thanks" class="hidden px-5 bg-white/20 mx-7 text-center mt-36">
+      <p class="text-2xl">thanks for sharing your memory</p>
       <button
         onclick="addMemory"
         id="addmore"
@@ -72,6 +74,50 @@
     <div id="savedMemory"></div>
 
     <script src="sketch.js"></script>
-    <!-- <script type="module" src="db.js"></script> -->
+    <!-- <script type="module">
+      import { initializeApp } from "https://www.gstatic.com/firebasejs/9.22.2/firebase-app.js";
+      import {
+        getDatabase,
+        ref,
+        onValue,
+      } from "https://www.gstatic.com/firebasejs/9.22.2/firebase-database.js";
+
+      // TODO: Replace the following with your app's Firebase project configuration
+      // See: https://firebase.google.com/docs/web/learn-more#config-object
+      // const firebaseConfig = {
+      //   // ...
+      //   // The value of `databaseURL` depends on the location of the database
+      //   databaseURL: "https://DATABASE_NAME.firebaseio.com",
+      // };
+      const firebaseConfig = {
+        apiKey: "AIzaSyAfTyAtO1mGJzukO3AOI-2ik83xGCBNIjQ",
+        authDomain: "garden2-d3bec.firebaseapp.com",
+        databaseURL: "https://garden2-d3bec-default-rtdb.firebaseio.com",
+        projectId: "garden2-d3bec",
+        storageBucket: "garden2-d3bec.appspot.com",
+        messagingSenderId: "818543115760",
+        appId: "1:818543115760:web:1881e6b1eb5efc4086f135",
+        measurementId: "G-L7B1JWZVM1",
+      };
+
+      // Initialize Firebase
+      const app = initializeApp(firebaseConfig);
+
+      const db = getDatabase();
+      const starCountRef = ref(db, "/runs/seeds");
+      onValue(starCountRef, (snapshot) => {
+        const data = snapshot.val();
+        // console.log(data);
+        // const obj = JSON.parse(data);
+        try {
+          Object.keys(data).forEach((key) => {
+            console.log(data[key].pX, data[key].pY);
+          });
+        } catch (error) {
+          console.log(error);
+        }
+        // updateStarCount(postElement, data);
+      });
+    </script> -->
   </body>
 </html>
