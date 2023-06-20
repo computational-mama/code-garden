@@ -33,7 +33,7 @@ const firebaseConfig = {
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 dotenv.config();
-const port = process.env.PORT || "5500";
+const port = process.env.PORT || "8080";
 var appExpress = express();
 
 // For parsing application/json
