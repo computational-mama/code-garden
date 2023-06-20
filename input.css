@@ -1,0 +1,30 @@
+@import url("https://fonts.googleapis.com/css2?family=Bagel+Fat+One&family=IBM+Plex+Serif:ital,wght@0,100;0,400;0,600;1,400;1,600&family=M+PLUS+Rounded+1c:wght@300&display=swap");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  h1 {
+    font-family: "Bagel Fat One", cursive;
+  }
+
+  p {
+    font-family: "M PLUS Rounded 1c", sans-serif;
+  }
+
+  button {
+    font-family: "M PLUS Rounded 1c", sans-serif;
+  }
+
+  input {
+    font-family: "M PLUS Rounded 1c", sans-serif;
+  }
+
+  canvas {
+    display: block;
+    position: fixed;
+    z-index: -10;
+    top: 0;
+  }
+}

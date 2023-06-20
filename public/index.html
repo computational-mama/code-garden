@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Sketch</title>
+
+    <!-- <link rel="stylesheet" type="text/css" href="style.css" /> -->
+    <link href="output.css" rel="stylesheet" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,700;1,400&display=swap"
+      rel="stylesheet"
+    />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.6.0/p5.min.js"></script>
+
+    <!-- <script src="libraries/p5.sound.min.js"></script> -->
+    <!-- {# <script src="https://cdn.tailwindcss.com"></script> #} -->
+  </head>
+
+  <body class="fixed">
+    <div class="header flex mx-auto justify-evenly items-center my-4 px-2">
+      <h1 class="text-5xl text-center uppercase text-green-200">
+        welcome to care garden
+      </h1>
+      <div>
+        <a
+          href="/memories.html"
+          class="text-2xl border-2 text-green-200 border-green-200 rounded-full p-4 h-6 w-6"
+          >i</a
+        >
+      </div>
+    </div>
+    <div id="write" class="px-6 mx-auto">
+      <p class="text-3xl text-center">
+        think of a memory with a person you love and computer
+      </p>
+      <div id="submitMemory" class="mx-auto"></div>
+    </div>
+    <div id="plant" class="hidden px-5 bg-white/20 mx-7 text-center">
+      <p class="text-3xl">
+        tap on your screen and drag the seed to plant your memory anywhere in
+        the garden
+      </p>
+      <button
+        id="done"
+        class="text-md px-8 py-4 rounded-full bg-green-200 mt-4"
+      >
+        Ok
+      </button>
+    </div>
+    <div id="thanks" class="hidden px-5 bg-white/20 mx-7 text-center">
+      <p class="text-3xl">thanks for sharing your memory</p>
+      <button
+        onclick="addMemory"
+        id="addmore"
+        class="text-md px-8 py-4 rounded-full bg-green-200 mt-4"
+      >
+        Add another memory
+      </button>
+      <button
+        id="gotogarden"
+        class="text-md px-8 py-4 rounded-full bg-green-200 mt-4"
+      >
+        See the garden
+      </button>
+    </div>
+    <div id="savedMemory"></div>
+
+    <script src="sketch.js"></script>
+    <!-- <script type="module" src="db.js"></script> -->
+  </body>
+</html>
