@@ -16,7 +16,26 @@ let arrX = [];
 let arrY = [];
 let petals;
 let colorArr = ["#a03443", "#340dsa", "#300ee3"];
+let plant1;
+let plant2;
+let plant3;
+let plant4;
+let plant5;
+let chosenPlant;
+let planted = [];
+let plants = [];
+let t = 0;
 
+function preload() {
+  plant1 = loadImage("assets/1.png");
+  plant2 = loadImage("assets/2.png");
+  plant3 = loadImage("assets/3.png");
+  plant4 = loadImage("assets/4.png");
+  plant5 = loadImage("assets/5.png");
+  for (i = 0; i < 4; i++) {
+    plants = loadImage("assets/" + (i + 1) + ".png");
+  }
+}
 function setup() {
   createCanvas(0, 0);
   memory = createInput("");
@@ -33,10 +52,12 @@ function setup() {
 
   submit.mousePressed(saveMem);
   plantOK.mousePressed(savePlant);
-  petals = int(random(5, 20));
-
+  let plantArr = [plant1, plant2, plant3, plant4, plant5];
+  // chosenPlant =console.log(random(plants));
+  chosenPlant = getRandomItem(plantArr);
+  console.log(chosenPlant[0], chosenPlant[1]);
   rectMode(CENTER);
-  frameRate(1);
+  // frameRate(1);
 
   const firebaseConfig = {
     apiKey: "AIzaSyAfTyAtO1mGJzukO3AOI-2ik83xGCBNIjQ",
@@ -61,27 +82,37 @@ function setup() {
     Object.keys(data).forEach((key) => {
       arrX.push(data[key].pX);
       arrY.push(data[key].pY);
+      planted.push(data[key].plant);
     });
   });
+  console.log(planted);
 }
 
 function draw() {
   background("#fef08a");
+
   for (i = 0; i < arrX.length; i++) {
-    cuteShape(arrX[i], arrY[i], arrX[i] / 4, petals, petals);
+    // if (planted[i] != "null") {
+    plantPlant(arrX[i], arrY[i]);
+    // }
   }
   if (touchCount > 0) {
     for (var i = 0; i < touches.length; i++) {
       //make a rectangle for each touch position
-      fill(0);
-      circle(touches[i].x, touches[i].y, 120);
+      if (touchCount <= 3) {
+        fill(230);
+        noStroke();
+        circle(touches[i].x, touches[i].y, 60);
+      }
     }
-    if (posX != "null") {
-      // cuteShape(posX, posY);
-      cuteShape(posX, posY, posX / 4, petals, petals);
+    if (posX != "null" && touchCount == 3) {
+      plantPlant(posX, posY);
     }
   }
-  // console.log(locations);
+  if (savedMemory.html != "null") {
+    savedMemory.position(posX, posY + t);
+    t--;
+  }
 }
 
 function touchEnded() {
@@ -95,66 +126,29 @@ function touchEnded() {
     }
 
     if (touchCount == 2) {
-      // savedMemory.html(memory.value());
-      // savedMemory.position(posX, posY);
-
+      // savedMemory.removeClass("hidden");
+      // savedMemory.addClass("block");
+      savedMemory.html(memory.value());
       let usermemory = memory.value();
       let positionX = posX;
       let positionY = posY;
-      sendData(usermemory, positionX, positionY);
+      sendData(
+        usermemory,
+        positionX,
+        positionY
+        // JSON.stringify(chosenPlant[0])
+      );
       setInterval(() => {
         select("#thanks").show();
-      }, 2000);
+      }, 2500);
     }
   }
   //memory typed by user, date created, position.x, position.y, randomPlantName all go to firebase. randomPlant and p.x p.y show on canvas
 }
 
-function cuteShape(x, y, radius, petalNum, petalWidth) {
-  fill(233, 33, 100, 30);
-  // fill(random(colorArr));
-  noStroke();
-  let angle = TWO_PI / petalNum;
-  push();
-  translate(x, y);
-  rotate(-PI / 2);
-  push();
-  for (let a = 0; a < TWO_PI; a += angle) {
-    let p1 = { x: 0, y: 0 };
-    let p2 = { x: radius / 2, y: -petalWidth };
-    let p3 = { x: radius, y: 0 };
-    let p4 = { x: radius / 2, y: petalWidth };
-    push();
-    noStroke();
-    rotate(a);
-    beginShape();
-    vertex(p1.x, p1.y);
-    bezierVertex(p1.x, p1.y, p2.x, p2.y, p3.x, p3.y);
-    bezierVertex(p3.x, p3.y, p4.x, p4.y, p1.x, p1.y);
-    vertex(p1.x, p1.y);
-    endShape();
-    pop();
-  }
-  pop();
-  push();
-  for (let a = 0; a < TWO_PI; a += angle) {
-    let p1 = { x: 0, y: 0 };
-    let p2 = { x: radius / 2, y: -petalWidth };
-    let p3 = { x: radius, y: 0 };
-    let p4 = { x: radius / 2, y: petalWidth };
-    push();
-    noFill();
-    rotate(a);
-    beginShape();
-    vertex(p1.x, p1.y);
-    bezierVertex(p1.x, p1.y, p2.x, p2.y, p3.x, p3.y);
-    bezierVertex(p3.x, p3.y, p4.x, p4.y, p1.x, p1.y);
-    vertex(p1.x, p1.y);
-    endShape();
-    pop();
-  }
-  pop();
-  pop();
+function plantPlant(x, y) {
+  // console.log(chosenPlant);
+  image(chosenPlant[0], x, y, 50, 80);
 }
 
 function saveMem() {
@@ -163,9 +157,12 @@ function saveMem() {
   background("#fef08a");
   formWrite.addClass("hidden");
   select("#plant").show();
-  for (i = 0; i < arrX.length; i++) {
-    cuteShape(arrX[i], arrY[i], arrX[i] / 4, petals, petals);
-  }
+  // for (i = 0; i < arrX.length; i++) {
+  //   if (planted[i] != "null") {
+  //     // planted[i] = planted[i].replace(/"/g, "");
+  //     plantPlant(arrX[i], arrY[i], planted[i]);
+  //   }
+  // }
 }
 
 function savePlant() {
@@ -178,6 +175,7 @@ async function sendData(mem, px, py) {
     memory: mem,
     posx: px,
     posy: py,
+    // plantName: plantName,
   };
 
   const options = {
@@ -197,4 +195,13 @@ async function sendData(mem, px, py) {
     .catch((ex) => {
       console.error(ex);
     });
+}
+
+function getRandomItem(arr) {
+  // get random index value
+  const randomIndex = Math.floor(Math.random() * arr.length);
+  // get random item
+  const item = arr[randomIndex];
+
+  return [item, randomIndex];
 }

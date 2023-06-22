@@ -551,6 +551,18 @@ canvas {
   position: fixed;
 }
 
+.bottom-4{
+  bottom: 1rem;
+}
+
+.left-8{
+  left: 2rem;
+}
+
+.z-50{
+  z-index: 50;
+}
+
 .mx-7{
   margin-left: 1.75rem;
   margin-right: 1.75rem;
@@ -561,26 +573,45 @@ canvas {
   margin-right: auto;
 }
 
+.my-2{
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+
 .my-4{
   margin-top: 1rem;
   margin-bottom: 1rem;
 }
 
-.my-auto{
-  margin-top: auto;
-  margin-bottom: auto;
+.my-7{
+  margin-top: 1.75rem;
+  margin-bottom: 1.75rem;
+}
+
+.my-12{
+  margin-top: 3rem;
+  margin-bottom: 3rem;
+}
+
+.mx-4{
+  margin-left: 1rem;
+  margin-right: 1rem;
+}
+
+.mt-36{
+  margin-top: 9rem;
 }
 
 .mt-4{
   margin-top: 1rem;
 }
 
-.mt-16{
-  margin-top: 4rem;
+.ml-4{
+  margin-left: 1rem;
 }
 
-.mt-36{
-  margin-top: 9rem;
+.block{
+  display: block;
 }
 
 .flex{
@@ -599,12 +630,20 @@ canvas {
   height: 1.5rem;
 }
 
+.h-12{
+  height: 3rem;
+}
+
 .w-6{
   width: 1.5rem;
 }
 
 .w-full{
   width: 100%;
+}
+
+.w-12{
+  width: 3rem;
 }
 
 .items-center{
@@ -646,13 +685,46 @@ canvas {
   background-color: rgb(255 255 255 / 0.2);
 }
 
+.bg-white\/60{
+  background-color: rgb(255 255 255 / 0.6);
+}
+
+.bg-yellow-300\/60{
+  background-color: rgb(253 224 71 / 0.6);
+}
+
+.bg-yellow-100\/60{
+  background-color: rgb(254 249 195 / 0.6);
+}
+
+.fill-green-200{
+  fill: #bbf7d0;
+}
+
+.stroke-green-200{
+  stroke: #bbf7d0;
+}
+
 .p-4{
   padding: 1rem;
+}
+
+.p-5{
+  padding: 1.25rem;
+}
+
+.p-6{
+  padding: 1.5rem;
 }
 
 .px-2{
   padding-left: 0.5rem;
   padding-right: 0.5rem;
+}
+
+.px-4{
+  padding-left: 1rem;
+  padding-right: 1rem;
 }
 
 .px-5{
@@ -675,6 +747,10 @@ canvas {
   padding-bottom: 1rem;
 }
 
+.pt-4{
+  padding-top: 1rem;
+}
+
 .text-center{
   text-align: center;
 }
@@ -684,14 +760,14 @@ canvas {
   line-height: 2rem;
 }
 
-.text-3xl{
-  font-size: 1.875rem;
-  line-height: 2.25rem;
-}
-
 .text-5xl{
   font-size: 3rem;
   line-height: 1;
+}
+
+.text-sm{
+  font-size: 0.875rem;
+  line-height: 1.25rem;
 }
 
 .uppercase{
@@ -701,4 +777,12 @@ canvas {
 .text-green-200{
   --tw-text-opacity: 1;
   color: rgb(187 247 208 / var(--tw-text-opacity));
+}
+
+.underline{
+  text-decoration-line: underline;
+}
+
+.underline-offset-4{
+  text-underline-offset: 4px;
 }

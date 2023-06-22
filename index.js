@@ -51,7 +51,9 @@ appExpress.post("/api", (request, response, next) => {
   let memory = data.memory;
   let posX = data.posx;
   let posY = data.posy;
+  // let plant = data.plantName;
   writeNewPost(memory, posX, posY);
+  // writeNewPost(memory, posX, posY, plant);
 });
 // Server setup
 appExpress.listen(port, () => {
@@ -67,6 +69,7 @@ function writeNewPost(userMemory, pX, pY) {
     createdOn: serverTimestamp(),
     pX: pX,
     pY: pY,
+    // plant: plant,
   };
 
   // Get a key for a new Post.

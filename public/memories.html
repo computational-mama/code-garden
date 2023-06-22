@@ -3,9 +3,57 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <!-- <title>Memories</title> -->
+    <title>Care/Code Garden Memories</title>
+
+    <!-- <link rel="stylesheet" type="text/css" href="style.css" /> -->
+    <link href="output.css" rel="stylesheet" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,700;1,400&display=swap"
+      rel="stylesheet"
+    />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.6.0/p5.min.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-database.js"></script>
   </head>
-  <body>
-    test
+
+  <body class="">
+    <div class="header flex mx-auto justify-evenly items-center my-4 px-2">
+      <div class="ml-4" onclick="location.href = '/index.html';">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke-width="1.5"
+          stroke="currentColor"
+          class="w-12 h-12 stroke-green-200"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            d="M9 15L3 9m0 0l6-6M3 9h12a6 6 0 010 12h-3"
+          />
+        </svg>
+      </div>
+      <h1 class="text-5xl text-center uppercase text-green-200">
+        care/code garden memories
+      </h1>
+    </div>
+    <div class="mx-auto" id="memList"></div>
+    <div class="mx-auto fixed bottom-4 left-8 z-50 bg-white/60">
+      <p class="text-sm text-center">
+        This care/code garden is built by
+        <a
+          href="https://computationalmama.xyz"
+          target="_blank"
+          class="underline underline-offset-4"
+          >Computational Mama</a
+        >
+      </p>
+    </div>
+    <script src="memories.js"></script>
   </body>
 </html>
